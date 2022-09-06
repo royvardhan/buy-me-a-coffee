@@ -35,7 +35,7 @@ describe("BuyRoyACoffee", () => {
     const tx = await buyRoyACoffee.buyCoffee(tipAmount, name, message, {
       value: tipAmount,
     });
-    const res = await buyRoyACoffee.memos()[0].name;
-    assert.equal(name, resName);
+    const res = await buyRoyACoffee.memos(0);
+    assert.equal(name, res.name);
   });
 });
