@@ -37,7 +37,7 @@ contract BuyRoyACoffee {
         emit CoffeeBuyer(msg.sender, _amount, _name, _message);
     }
 
-    function withdraw() public onlyOwner{
+    function withdraw() public onlyOwner {
         (bool success, ) = owner.call{value: address(this).balance}("");
         // require(success, "Transfer failed");
         if (!success) {

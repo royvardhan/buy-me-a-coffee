@@ -38,4 +38,16 @@ describe("BuyRoyACoffee", () => {
     const res = await buyRoyACoffee.memos(0);
     assert.equal(name, res.name);
   });
+
+  it("Should be able to withdraw the balance", async () => {
+    const tipAmount = utils.parseEther("0.1");
+    const name = "Roy";
+    const message = "writingTest";
+    const tx = await buyRoyACoffee.buyCoffee(tipAmount, name, message, {
+      value: tipAmount,
+    });
+    await buyRoyACoffee.withdraw();
+    const balance = await buyRoyACoffee.showBalance();
+    assert.equal(balance, 0);
+  });
 });
