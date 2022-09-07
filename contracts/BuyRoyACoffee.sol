@@ -55,3 +55,5 @@ contract BuyRoyACoffee {
     }
 
 }
+
+// contract deployed 0x34DFE2D56EE5DFe75a8DCBD4BC18e74489a4FECD goerli

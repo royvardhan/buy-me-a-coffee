@@ -12,4 +12,15 @@ module.exports = {
     noColors: true,
     coinmarketcap: process.env.COINMARKETCAP_API_KEY,
   },
+  networks: {
+    goerli: {
+      url: process.env.GOERLI,
+      accounts: [process.env.ACCOUNT],
+    },
+  },
+  etherscan: {
+    apiKey: {
+      goerli: process.env.ETHERSCAN_GOERLI,
+    },
+  },
 };
