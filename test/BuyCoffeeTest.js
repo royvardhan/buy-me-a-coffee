@@ -7,6 +7,9 @@ const abi = require("../utils/abi.json");
 describe("BuyRoyACoffee", () => {
   let coffeeFactory;
   let buyRoyACoffee;
+  const tipAmount = utils.parseEther("0.1");
+  const name = "Roy";
+  const message = "writingTest";
 
   beforeEach(async () => {
     coffeeFactory = await ethers.getContractFactory("BuyRoyACoffee");
@@ -20,9 +23,6 @@ describe("BuyRoyACoffee", () => {
   });
 
   it("Should update the balance of the contract after recieving a tip", async () => {
-    const tipAmount = utils.parseEther("0.1");
-    const name = "Roy";
-    const message = "writingTest";
     const tx = await buyRoyACoffee.buyCoffee(tipAmount, name, message, {
       value: tipAmount,
     });
@@ -31,9 +31,6 @@ describe("BuyRoyACoffee", () => {
   });
 
   it("Shall display the keys in the memo", async () => {
-    const tipAmount = utils.parseEther("0.1");
-    const name = "Roy";
-    const message = "writingTest";
     const tx = await buyRoyACoffee.buyCoffee(tipAmount, name, message, {
       value: tipAmount,
     });
@@ -42,9 +39,6 @@ describe("BuyRoyACoffee", () => {
   });
 
   it("Should be able to withdraw the balance", async () => {
-    const tipAmount = utils.parseEther("0.1");
-    const name = "Roy";
-    const message = "writingTest";
     const tx = await buyRoyACoffee.buyCoffee(tipAmount, name, message, {
       value: tipAmount,
     });
@@ -55,9 +49,6 @@ describe("BuyRoyACoffee", () => {
 
   it("Singer is equal to owner", async () => {
     const [owner, addr1, addr2] = await ethers.getSigners();
-    const tipAmount = utils.parseEther("0.1");
-    const name = "Roy";
-    const message = "writingTest";
     const tx = await buyRoyACoffee.buyCoffee(tipAmount, name, message, {
       value: tipAmount,
     });
@@ -66,9 +57,6 @@ describe("BuyRoyACoffee", () => {
   });
 
   it("Should not be able to withdraw if !owner", async () => {
-    const tipAmount = utils.parseEther("0.1");
-    const name = "Roy";
-    const message = "writingTest";
     const tx = await buyRoyACoffee.buyCoffee(tipAmount, name, message, {
       value: tipAmount,
     });
@@ -76,12 +64,12 @@ describe("BuyRoyACoffee", () => {
     const provider = await ethers.getDefaultProvider();
     const contract = new ethers.Contract(buyRoyACoffee.address, abi, provider);
     const contractWithWallet = contract.connect(addr1);
-    let success;
+    let withdrawSuccess;
     try {
       await contractWithWallet.withdraw();
     } catch (error) {
-      success = false;
+      withdrawSuccess = false;
     }
-    assert.equal(success, false);
+    assert.equal(withdrawSuccess, false);
   });
 });
