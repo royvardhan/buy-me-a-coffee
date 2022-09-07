@@ -7,6 +7,7 @@ error BuyRoyACoffee__TransferFailed();
 contract BuyRoyACoffee {
 
     event CoffeeBuyer(address indexed from, uint256 amount, string name, string message);
+
     address payable owner;
 
     struct Memo{
@@ -47,6 +48,10 @@ contract BuyRoyACoffee {
 
     function showBalance() public view returns(uint256) {
         return address(this).balance;
+    }
+
+    function showOwner() public view returns(address) {
+        return owner;
     }
 
 }

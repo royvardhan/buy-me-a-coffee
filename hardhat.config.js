@@ -6,7 +6,7 @@ require("dotenv").config();
 module.exports = {
   solidity: "0.8.9",
   gasReporter: {
-    enabled: true,
+    enabled: false,
     currency: "USD",
     outputFile: "gas-report.txt",
     noColors: true,
